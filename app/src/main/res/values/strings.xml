@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Github User</string>
+
+    <string name="something_went_wrong" translatable="false">Terjadi kesalahan, silahkan coba kembali</string>
+    <string name="failure_network_connection" translatable="false">Tidak ada koneksi internet</string>
+    <string name="end_session" translatable="false">Sesi habis</string>
+    <string name="failure_server_error" translatable="false">Server bermasalah</string>
+    <string name="failure_unauthorized" translatable="false">Tidak dikenali</string>
+    <string name="failure_request_too_large" translatable="false">Permintaan data terlalu besar</string>
+    <string name="ok" translatable="false">OK</string>
+</resources>
