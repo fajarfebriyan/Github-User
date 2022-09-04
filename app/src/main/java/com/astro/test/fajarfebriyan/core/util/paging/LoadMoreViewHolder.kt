@@ -1,4 +1,4 @@
-package com.astro.test.fajarfebriyan.core.util.pagging
+package com.astro.test.fajarfebriyan.core.util.paging
 
 import android.view.LayoutInflater
 import android.view.View

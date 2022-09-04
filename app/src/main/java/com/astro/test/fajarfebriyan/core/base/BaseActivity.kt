@@ -21,6 +21,7 @@ import com.astro.test.fajarfebriyan.core.interactor.LocalCase
 import com.astro.test.fajarfebriyan.core.util.common.Loading
 import com.astro.test.fajarfebriyan.core.util.common.LoadingState
 import com.astro.test.fajarfebriyan.core.util.common.Status
+import com.astro.test.fajarfebriyan.data.network.general.NetworkState
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
@@ -87,6 +88,10 @@ abstract class BaseActivity<VDB: ViewDataBinding, VM: ViewModel>() : AppCompatAc
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
     }
 
+    internal fun showToast(string: String) {
+        Toast.makeText(applicationContext, string, Toast.LENGTH_SHORT).show()
+    }
+
     internal fun showSnackbar(@StringRes message: Int) =
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
 
@@ -101,7 +106,18 @@ abstract class BaseActivity<VDB: ViewDataBinding, VM: ViewModel>() : AppCompatAc
             is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             is Failure.BadRequest, Failure.NotFound -> renderFailure(R.string.something_went_wrong)
             is Failure.ServerError -> renderFailure(R.string.failure_server_error)
-            else -> {}
+            else -> {renderFailure(R.string.something_went_wrong)}
+        }
+    }
+
+    protected open fun handleNetworkCase(state: NetworkState) {
+        if (state.status != com.astro.test.fajarfebriyan.data.network.general.Status.SUCCESS) {
+            state.msg?.let {
+                if (it.isNotEmpty())
+                    showToast(it)
+                else
+                    renderFailure(R.string.failure_server_error)
+            }
         }
     }
 

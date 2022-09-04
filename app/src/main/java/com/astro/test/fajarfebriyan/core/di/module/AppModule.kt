@@ -3,7 +3,10 @@ package com.astro.test.fajarfebriyan.core.di.module
 import android.app.Application
 import android.content.Context
 import com.astro.test.fajarfebriyan.BuildConfig
+import com.astro.test.fajarfebriyan.core.db.AppDatabase
+import com.astro.test.fajarfebriyan.core.db.DatabaseBuilder
 import com.astro.test.fajarfebriyan.core.interactor.LocalCase
+import com.astro.test.fajarfebriyan.data.database.DatabaseHelper
 import com.astro.test.fajarfebriyan.data.network.client.ApiHeaderInterceptor
 import com.astro.test.fajarfebriyan.data.network.client.RestClient
 import com.astro.test.fajarfebriyan.data.preferences.PreferenceHelper
@@ -29,6 +32,18 @@ class AppModule {
     @Provides
     @Singleton
     internal fun providePrefHelper(preference: PreferenceHelper.Preference): PreferenceHelper = preference
+
+    @Provides
+    @Singleton
+    internal fun provideDatabaseBuilder(): DatabaseBuilder = DatabaseBuilder
+
+    @Provides
+    @Singleton
+    internal fun provideAppDatabase(context: Context, databaseBuilder: DatabaseBuilder): AppDatabase = databaseBuilder.getInstance(context)
+
+    @Provides
+    @Singleton
+    internal fun provideAppDatabaseHelper(appDatabase: AppDatabase): DatabaseHelper.DatabaseHelperImpl = DatabaseHelper.DatabaseHelperImpl(appDatabase)
 
     @Provides
     @Singleton

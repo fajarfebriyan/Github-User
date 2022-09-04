@@ -10,7 +10,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.astro.test.fajarfebriyan.R
-import com.astro.test.fajarfebriyan.core.util.pagging.LoadMoreViewHolder
+import com.astro.test.fajarfebriyan.core.util.paging.LoadMoreViewHolder
 import com.astro.test.fajarfebriyan.data.network.general.NetworkState
 
 abstract class BasePagingAdapter <ITEM : Any, VH : RecyclerView.ViewHolder, VDB : ViewDataBinding>(
